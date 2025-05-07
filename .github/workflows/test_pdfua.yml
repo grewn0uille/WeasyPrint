@@ -38,11 +38,11 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
       - name: Generate VeraPDF reports
         uses: addnab/docker-run-action@v3
-          with:
-            image: verapdf/cli:latest
-            options: -v ${{ github.workspace }}:/var/www
-            run: |
-              ./verapdf -f ua1 --success --progress --format html /github/workspace/${{env.REPORTS_FOLDER}}/report.pdf > /github/workspace/${{env.REPORTS_FOLDER}}/report-verapdf.html
+        with:
+          image: verapdf/cli:latest
+          options: -v ${{ github.workspace }}:/var/www
+          run: |
+            ./verapdf -f ua1 --success --progress --format html /github/workspace/${{env.REPORTS_FOLDER}}/report.pdf > /github/workspace/${{env.REPORTS_FOLDER}}/report-verapdf.html
       - name: Archive generated PDFs
         uses: actions/upload-artifact@v4
         with:
